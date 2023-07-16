@@ -11,8 +11,7 @@ CREATE TABLE IF NOT EXISTS LOG_EXERCISES (
     currentDatetime DATE
 );
 
--- Mantiene un registro de los ejercicios hechos en las rutinas
-DROP TRIGGER tgg_log_exercises;
+DROP TRIGGER IF EXISTS tgg_log_exercises;
 DELIMITER //
 CREATE TRIGGER tgg_log_exercises
 BEFORE UPDATE ON Posse.rutinedayexercise
@@ -30,8 +29,7 @@ BEGIN
 END //
 DELIMITER ; 
 
--- Actualiza el pr en caso de ser un pr
-DROP TRIGGER tgg_log_new_prs;
+DROP TRIGGER IF EXISTS tgg_log_new_prs;
 DELIMITER //
 CREATE TRIGGER tgg_log_new_prs
 AFTER UPDATE ON Posse.rutinedayexercise
@@ -47,9 +45,3 @@ BEGIN
     END IF;
 END //
 DELIMITER ; 
-
-UPDATE Posse.rutinedayexercise SET weight = 220 WHERE pk_id = 6;
-
-SELECT * FROM Posse.LOG_EXERCISES;
-SELECT * FROM Posse.rutinedayexercise;
-SELECT * FROM Posse.prs;

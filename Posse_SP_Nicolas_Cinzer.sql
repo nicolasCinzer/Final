@@ -1,7 +1,6 @@
 -- Procedures
 use Posse;
 
--- La idea de este SP es poder obtener la cantidad de ejercicios por su tipo.
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_amount_exercise_by_type;
 CREATE PROCEDURE sp_amount_exercise_by_type(IN movement INT, IN p_order_type VARCHAR(4))
@@ -18,9 +17,6 @@ BEGIN
 END $$ 
 DELIMITER ;
 
-call sp_amount_exercise_by_type(1, 'ASC');
-
--- La idea de este SP es insertar multiples registros para un cierto dia de entrenamiento.
 DELIMITER $$
 DROP PROCEDURE IF EXISTS sp_insert_multiple_random_exercises;
 CREATE PROCEDURE sp_insert_multiple_random_exercises (IN block_id INT, IN week_num INT, IN day_num INT)
@@ -41,7 +37,3 @@ BEGIN
 	END WHILE;
 END $$ 
 DELIMITER ;
-
-call sp_insert_multiple_random_exercises(2, 2, 2);
-
-SELECT * FROM Posse.RutineDayExercise WHERE fk_rutine = @rutine;
